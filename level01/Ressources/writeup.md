@@ -14,4 +14,4 @@ The password is encrypted using the encryption of the system "crypt" (SHA-256 or
 I used JohnTheRipper to decrypt the password find in the file :
     echo "42hDRfypTqqnw" > pass && john pass
 
-It give us abcdefg and im able to connect to user flag01
+It give us "abcdefg" and im able to connect to user flag01
