@@ -1,13 +1,13 @@
 At the home of the user is present a .pl file :
 
 ```perl
-use CGI qw{param};
-print "Content-type: text/html\n\n";
-sub x {
-  $y = $_[0];
-  print `echo $y 2>&1`;
-}
-x(param("x"));
+  use CGI qw{param};
+  print "Content-type: text/html\n\n";
+  sub x {
+    $y = $_[0];
+    print `echo $y 2>&1`;
+  }
+  x(param("x"));
 ```
 
 In Perl, CGI(Common Gateway Interface) is a protocol for executing scripts via web requests

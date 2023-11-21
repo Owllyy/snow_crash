@@ -18,7 +18,7 @@ At /usr/sbin/openarenaserver i found this script :
 
 It runs every program at /opt/openarenaserver and remove them;
 
-I then created a script at /opt/openarenaserver/test :
+I created a script at /opt/openarenaserver/test :
 
 	#!/bin/sh
 	getflag > /tmp/flag

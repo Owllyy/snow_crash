@@ -14,10 +14,12 @@ It simply, for each character fo the string, add the index of the character to t
 This program is enough to decode the token :
 
 ```c
-int main(int ac, char *av) {
-	char c;
+#include <unistd.h>
+int main(int ac, char **av) {
+	int c;
+	int i = 0;
 
-	for (int i = 0; av[1][i]; i++) {
+	for (av[1][i]; i++) {
 		c = av[1][i] - i;
 		write(1, &c, 1);
 	}
