@@ -2,7 +2,7 @@ There is a program with the setuid of flag07:
 
 -rwsr-sr-x 1 flag07  level07 8805 Mar  5  2016 level07
 
-There is no source code at the home directorie so i used Gihdra through https://dogbolt.org/ to get a disassambled version of the binary :
+There is no source code at the home directorie so i used Gihdra to get a disassambled version of the binary :
 
 int main(int argc,char **argv,char **envp)
 {

