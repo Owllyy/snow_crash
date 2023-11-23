@@ -1,11 +1,12 @@
-On this exercise there is a lua file describing how is working a server curently running.
+In this exercise, there is a Lua file describing how a currently running server works:
 
+```lua
 #!/usr/bin/env lua
 local socket = require("socket")
 local server = assert(socket.bind("127.0.0.1", 5151))
 
 function hash(pass)
-  prog = io.popen("echo "..pass.." | sha1sum", "r")
+  prog = io.popen("echo " .. pass .. " | sha1sum", "r")
   data = prog:read("*all")
   prog:close()
 
@@ -13,7 +14,6 @@ function hash(pass)
 
   return data
 end
-
 
 while 1 do
   local client = server:accept()
@@ -29,20 +29,14 @@ while 1 do
       else
           client:send("Gz you dumb*\n")
       end
-
   end
 
   client:close()
 end
+```
 
-it is listening at localhost 127.0.0.1 with the port 5151
-For every connection it display a message asking for a password.
-After capturing the password, it exeucte a function starting by "io.popen("echo "..pass.." | sha1sum", "r")"
+It is listening on localhost (127.0.0.1) on port 5151. For every connection, it displays a message asking for a password. After capturing the password, it executes a function starting with `io.popen("echo " .. pass .. " | sha1sum", "r")`.
 
-io.popen is a function returning a result of a command send as string executed by the system.
-pass is our variable previously send and captured.
-.. operator, in lua is used to concatenate strings.
+The `io.popen` function returns the result of a command sent as a string and executed by the system. Here, `pass` is the variable previously sent and captured. The `..` operator in Lua is used to concatenate strings.
 
-Ive found the flag by sending the password "& getflag > /tmp/flag" so the bash is executing : "echo & getflag > /tmp/flag | sha1sum"
-
-The flag is then present at /tmp/flag
+The flag was found by sending the password "& getflag > /tmp/flag". This causes the Bash to execute the command "echo & getflag > /tmp/flag | sha1sum". The flag is then present at /tmp/flag.
