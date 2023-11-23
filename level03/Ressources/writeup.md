@@ -1,16 +1,16 @@
-At the home of user level03 there is a executable file.
+At the home of user level03, there is an executable file.
 
-I used gihdra to disasamble it, and found that it use geteuid() and seteuid() and then call system().
-It's uid is flag03 so i can have the uid of flag03 for the command gived to system()
+I used Ghidra (dogbolt.org) to disassemble it and discovered that it utilizes `geteuid()` and `seteuid()` before invoking `system()`. Its UID is flag03, so I can acquire the UID of flag03 for the command given to `system()`.
 
-Inside the system call there is "/usr/bin/env echo Exploit me"
-The trick is to add another directory to the path, so i can write my own program "echo".
+Within the `system()` call, there is "/usr/bin/env echo Exploit me". The strategy is to add another directory to the PATH, allowing me to write my own program named "echo".
 
-I added /tmp: to the Environement variable PATH in first position.
+I appended "/tmp:" to the Environment variable PATH in the first position.
 
-And i created this program at /tmp/echo :
+Subsequently, I created this program at /tmp/echo:
 
+```bash
 #!/bin/sh
 getflag
+```
 
-After executing the program level03 it gave me the flag
+After executing the program as level03, it provided me with the flag.
