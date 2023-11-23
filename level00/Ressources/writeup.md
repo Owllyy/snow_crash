@@ -1,11 +1,8 @@
-I started by searching information about the user flag00.
-I used the command find with the option -user to find file created by flag00. (find / -user "flag00" -print 2>/dev/null)
+I started by searching for information about the user flag00 using the 'find'command with the '-user' option
+(find / -user "flag00" -print 2>/dev/null).
 
-I found the file /usr/sbin/john wich contain "cdiiddwpgswtgt"
+I discovered a file at '/usr/sbin/john' containing the code 'cdiiddwpgswtgt.'
+Since this code wasn't enough to log in as flag00, I tried decoding it using the Rot13 algorithm.
+I found a helpful tool at https://www.dcode.fr/caesar-cipher, which tested different shifts.
 
-The string was not enough to connect as user flag00, so i tried to decrypt it with the simplest crypting algorithm Rot13.
-I found an easy version at https://www.dcode.fr/caesar-cipher that is trying every shift from 0 to 25.
-
-The 11th shift give the string "nottoohardhere" 
-
-It was enough to connect as flag00.
+After trying the 11th shift, the code turned into 'nottoohardhere,' granting me access to the flag00 user account.
