@@ -17,8 +17,15 @@ else {
 
 ...
 
-> jump *(main + 63)
+I will use the same method as the exercise 13
+At first i step in some intial instruction to let the memory being set.
+I stop before the instruction wich is calling ptrace
+And then jump to the code above, skiping the verification.
 
-and then i displayed the string pointed by the return register eax
+This part in gdb is located at *(main + 1183)
 
-> print (char *)($eax)
+> jump *(main + 1883)
+
+and then the program display the password :
+
+  7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ

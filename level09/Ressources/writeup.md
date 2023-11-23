@@ -19,9 +19,16 @@ int main(int ac, char **av) {
 	int c;
 	int i = 0;
 
-	for (av[1][i]; i++) {
+	while (av[1][i]) {
 		c = av[1][i] - i;
 		write(1, &c, 1);
+		i++;
 	}
 }
 ```
+
+And the token value after modification is :
+
+	f3iji1ju5yuevaus41q1afiuq
+
+That's enough to reach flag09 and use getflag
