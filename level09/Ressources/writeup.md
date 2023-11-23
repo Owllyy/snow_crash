@@ -1,6 +1,10 @@
 At the home directory there is a token file and a program :
 
-the content of token is readable by this user : f4kmm6p|=�p�n��DB�Du{��
+the content of token is readable by this user : 
+```
+f4kmm6p|=�p�n��DB�Du{��
+```
+
 It does not correspond to the pass of flag09 and seems to be alterated because of the non displayable character.
 
 The program is taking a string and is displaying the result on the standard output :
