@@ -1,5 +1,5 @@
 I started by searching for information about the user flag00 using the 'find'command with the '-user' option
-(find / -user "flag00" -print 2>/dev/null).
+(find / -user "flag00" 2>/dev/null).
 
 I discovered a file at '/usr/sbin/john' containing the code 'cdiiddwpgswtgt.'
 Since this code wasn't enough to log in as flag00, I tried decoding it using the Rot13 algorithm.
