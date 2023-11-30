@@ -36,7 +36,7 @@ int main(int argc, char **argv, char **envp)
 To exploit this, I only need to modify the LOGNAME value:
 
 ```bash
-export LOGNAME="; getflag > /tmp/flag"
+LOGNAME='`getflag`' ./level07
 ```
 
-The flag is then accessible at /tmp/flag.
+TADAAAAM
