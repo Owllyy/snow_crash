@@ -45,7 +45,7 @@ int main(int argc, char **argv, char **envp)
 Your initial solution involved creating a symbolic link to 'token' with a name other than 'token':
 
 ```bash
-ln -s /home/user/level08/token /tmp/flag
+ln -s $(realpath token) /tmp/flag
 /home/user/level08/level08 /tmp/flag
 ```
 
