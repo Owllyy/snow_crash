@@ -9,7 +9,7 @@ flag01:42hDRfypTqqnw:3001:3001::/home/flag/flag01:/bin/bash -> 42hDRfypTqqnw
 As for the others, the encrypted password is denoted by "x" and stored in the inaccessible file /etc/shadow:
 flag02:x:3002:3002::/home/flag/flag02:/bin/bash
 
-The password is encrypted using the system's "crypt" encryption (SHA-256 or SHA-512 since glibc 2.7).
+The password is encrypted using the system's "crypt" encryption (Here the password is encrypted using DES).
 
 To decrypt the password found in the file, I utilized JohnTheRipper:
 ```bash
