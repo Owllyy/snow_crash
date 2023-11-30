@@ -25,7 +25,7 @@ Taking advantage of this, I created a script at /opt/openarenaserver/test:
 
 ```bash
 #!/bin/sh
-getflag > /tmp/flag
+retflag | wall
 ```
 
-After waiting for 2 minutes, I retrieved the flag from /tmp/flag.
+After waiting for 30 seconds, I retrieved the flag.
