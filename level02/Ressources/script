@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pip3 install virtualenv;
+/nfs/homes/${LOGNAME}/.local/bin/virtualenv ./level02/Ressources/.venv;
+source ./level02/Ressources/.venv/bin/activate;
+pip3 install scapy;
+python level02/Ressources/script.py
